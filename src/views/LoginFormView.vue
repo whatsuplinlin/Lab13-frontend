@@ -77,9 +77,13 @@ export default {
   methods: {
     handleLogin(user) {
       console.log(user)
-      AuthService.login(user).then(() => {
-        this.$router.router.push({ name: 'EventList' })
-      })
+      AuthService.login(user)
+        .then(() => {
+          this.$router.push({ name: 'EventList' })
+        })
+        .catch(() => {
+          this.message = 'could not login'
+        })
     }
   }
 }
